@@ -96,20 +96,30 @@ else:
 
 
 
-# Code to test if a file exists and then what shape type the file is.
+# Code to test if a file exists and then test if the shape type is polyline,
+# polygon or point.
 if arcpy.Exists(fc):
     desc = arcpy.Describe(fc)
     if desc.shapeType == "Polygon":
-        type = "Polygon"
+        shape_type = "Polygon"
     elif desc.shapeType == "Polyline":
-        type = "Polyline"
+        shape_type = "Polyline"
     elif desc.shapeType == "Point":
-        type = "point"
-    elif desc.shapeType == "MultiPoint":
-        type = "MultiPoint"
-    elif desc.shapeType == "MultiPoint":
-        type = "MultiPatch"
-    print type
+        shape_type = "point"
+    else:
+        shape_type = "Please select another file"
+    print shape_type
+else:
+    print("{0} does not exist.".format(fc))
+
+# Code to test if a file exists and then test if the shape type is polyline,
+# polygon or point.
+if arcpy.Exists(fc):
+    desc = arcpy.Describe(fc)
+    if desc.shapeType in ["Polygon", "Polyline", "Point"]:
+        print desc.shapeType
+    else:
+        shape_type = "Please select another file"
 else:
     print("{0} does not exist.".format(fc))
 
@@ -123,5 +133,4 @@ else:
 
 
 
-
-
+        

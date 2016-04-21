@@ -16,6 +16,8 @@ print a.index("apple")
 
 a = ["apple", "Microsoft", "Samsung"]
 # List reverse function. This can also be done using slicing.
+# Python slicing. Start, stop, step.
+print a[::-1]
 a.reverse()
 print a
 # Nested list
