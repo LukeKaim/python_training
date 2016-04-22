@@ -1,13 +1,4 @@
 
-
-
-
-
-
-
-
-
-
 # Feature class list.
 fc_list = [r"H:\rm_urisa\data\python_training.gdb\denver_parcel",
              r"H:\rm_urisa\data\python_training.gdb\crime"]
