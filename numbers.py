@@ -54,5 +54,8 @@ print c
 b = 2**2
 print(b)
 
+# Semicolon can be used to terminate statements. They are not required.
+# Semicolon can be used to create Compound statements. This allows one to have
+# multiple statements on the same line. 
 a = 10; b = 5
 print(a, b)

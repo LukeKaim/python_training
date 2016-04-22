@@ -8,8 +8,12 @@ print dic[1]
 del dic[4]
 print dic
 
+# Use iteritems to interate through the keys and values.
+for key, value in dic.iteritems():
+    print key, value
 
 # Dictionaries values can be a list. This is useful for classifying data.
 dic = {"water" : ["River", "stream", "Ocean"]}
 print len(dic)
 print dic
+

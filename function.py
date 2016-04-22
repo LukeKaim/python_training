@@ -76,18 +76,26 @@ def field_exist(dataset, field):
     else:
         return False
 
-def buf_shape(fc_list, prj_file):
+def buf_shape(fc_list, prj_code):
     """
     Function to buffer feature classes based on the shape type.
     Parameters:
         1. The feature class list.
-        2. prj file.
+        2. prj code.
     """
+    # Set output coordinate system to 'NAD_1983_StatePlane_Colorado_
+    # Central_FIPS_0502_Feet'
+    # by using its factory code 26911 (available in *.prj file)
+    outCS = arcpy.SpatialReference()
+    outCS.factoryCode = prj_code
+    outCS.create()
+
     # For loop to interate over the list.
     for i in fc_list:
         if arcpy.Exists(i):
             out_file = i + "prj"
-            arcpy.Project_management(in_dataset=i, out_dataset=out_file,  out_coor_system=prj_file)
+            arcpy.Project_management(in_dataset=i, out_dataset=out_file,
+                                    out_coor_system=outCS)
             # Use describe to get file information.
             desc = arcpy.Describe(out_file)
             # Test if the shapetype.
@@ -98,6 +106,11 @@ def buf_shape(fc_list, prj_file):
                  buffer_distance = 100
             elif desc.shapeType == "Point":
                 buffer_distance = 50
+            else:
+                print("Please select a new file. The file cannot be MultiPoint or "
+                "MultiPatch.")
+                # Continue to the next iteration. Do not want to buffer.
+                continue
             # Buffer each file. The output name is input name + buff.
             arcpy.Buffer_analysis(out_file, out_file + "buff", buffer_distance)
         # Else the file does not exist. Print message to the user.
