@@ -3,6 +3,7 @@ class Foo(object):
         super(Foo, self).__init__()
         self.name = name
         self.value = value
+        sss
 
 class Customer(object):
     """A customer of ABC Bank with a checking account. Customers have the
