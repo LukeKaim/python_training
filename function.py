@@ -86,16 +86,16 @@ def buf_shape(fc_list, prj_code):
     # Set output coordinate system to 'NAD_1983_StatePlane_Colorado_
     # Central_FIPS_0502_Feet'
     # by using its factory code 26911 (available in *.prj file)
-    outCS = arcpy.SpatialReference()
-    outCS.factoryCode = prj_code
-    outCS.create()
+    out_cs = arcpy.SpatialReference()
+    out_cs.factoryCode = prj_code
+    out_cs.create()
 
     # For loop to interate over the list.
     for i in fc_list:
         if arcpy.Exists(i):
             out_file = i + "prj"
             arcpy.Project_management(in_dataset=i, out_dataset=out_file,
-                                    out_coor_system=outCS)
+                                    out_coor_system=out_cs)
             # Use describe to get file information.
             desc = arcpy.Describe(out_file)
             # Test if the shapetype.
