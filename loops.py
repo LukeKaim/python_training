@@ -107,6 +107,24 @@ for i in range(100):
     print "test"
 
 
+# Break exits the loop. 
+w = 50
+for i in range(100):
+    if i < 50:
+        break
+    else:
+        print i
+    print "test"
+
+# Pass continues though the loop. Pass can be used when no action requires.
+w = 50
+for i in range(100):
+    if i < 50:
+        pass
+    else:
+        print i
+    print "test"
+
 
 # Feature class list.
 fc_list = ["denver_parcel",
